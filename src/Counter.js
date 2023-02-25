@@ -16,8 +16,19 @@ export default class Counter extends Component{
         console.log('Component Did Mount');
         console.log('---------------------');
     }
+
+    shouldComponentUpdate(nextProps, nextState){
+        if(nextProps.ignoreProp && 
+            this.props.ignoreProp !== nextProps.ignoreProp){
+                console.log('Should component update - DO NOT RENDER')
+                return false;
+            }
+        console.log('Should Component update - RENDER')
+        return true
+    }
     
     render(){
+        console.log('Render')
         return(
             <div className="counter">
                 <button onClick={this.increment}>Increment</button>
